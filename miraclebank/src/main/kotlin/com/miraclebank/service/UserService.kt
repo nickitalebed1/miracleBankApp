@@ -13,6 +13,7 @@ import java.util.*
 
 @Service
 class UserService {
+
     @Autowired
     internal var userRepository: UserRepository? = null
     @Autowired
@@ -34,7 +35,7 @@ class UserService {
             return null
         }
         val password = String(Base64.decodeBase64(pass.toByteArray()))
-        val u = userRepository!!.findByUsername(username) ?: return null
+        val u = userRepository!!.findByUsername(username)
         if (u.getPassword() != shaPasswordEncoder!!.encodePassword(password, u.getSalt())) {
             return null
         }

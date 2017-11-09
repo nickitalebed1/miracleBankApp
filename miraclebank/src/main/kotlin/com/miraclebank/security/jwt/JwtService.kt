@@ -14,12 +14,11 @@ class JwtService {
     fun createToken(username: String, secret: String, expireAt: Date?): String? {
         if (StringUtils.hasText(username) && StringUtils.hasText(secret) && expireAt != null && expireAt.after(Date())) {
             val secret2 = String(Base64.encodeBase64(secret.toByteArray()))
-            val compactJws = Jwts.builder()
+            return Jwts.builder()
                     .setSubject(username)
                     .signWith(SignatureAlgorithm.HS512, secret2)
                     .setExpiration(expireAt)
                     .compact()
-            return compactJws
         }
         return null
     }
@@ -42,7 +41,6 @@ class JwtService {
     }
 
     companion object {
-
         internal val LOGGER = LoggerFactory.getLogger(JwtService::class.java)
     }
 

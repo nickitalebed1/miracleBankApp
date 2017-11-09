@@ -44,8 +44,8 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
-        val permited = arrayOfNulls<String>(security!!.ignored.size)
-        security!!.ignored.toTypedArray()
+//        val permited = arrayOfNulls<String>(security!!.ignored.size)
+//        security!!.ignored.toTypedArray()
         http
                 .csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
